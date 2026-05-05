@@ -1,16 +1,77 @@
-# React + Vite
+# Quantum Arc Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Initial website for **Quantum Arc LLC**.
 
-Currently, two official plugins are available:
+This project is being built as the first working version of the Quantum Arc business website. The site will introduce who Quantum Arc is, what services it offers, provide blog/article space, and give visitors a simple way to make contact.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Current Project Status
 
-## React Compiler
+The site is currently in **Phase 1**, which focuses on building the first complete working version of the website.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Phase 1 is not meant to be the final polished version. The goal is to create a clean, organized foundation that can be improved later.
 
-## Expanding the ESLint configuration
+## Phase 1 Goal
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+By the end of Phase 1, the site should include:
+
+- A homepage
+- A clear business introduction
+- A services section
+- An about section
+- Blog/article preview content
+- A contact section
+- Reusable components
+- Organized content files
+- Clean styling
+- Comments throughout the code for future updates
+
+## Current Sprint
+
+### Phase 1 Sprint 2: Initial Working Site
+
+Sprint 2 focuses on creating the first full homepage layout.
+
+This includes:
+
+- Header navigation
+- Hero section
+- Services section
+- About section
+- Blog preview section
+- Contact section
+- Footer
+- Reusable site content stored separately from components
+
+## Tech Stack
+
+This project currently uses:
+
+- React
+- Vite
+- JavaScript
+- CSS
+
+## Project Structure
+
+```txt
+src/
+  assets/
+    hero.png
+
+  components/
+    Header.jsx
+    HeroSection.jsx
+    ServicesSection.jsx
+    AboutSection.jsx
+    BlogPreviewSection.jsx
+    ContactSection.jsx
+    Footer.jsx
+
+  data/
+    siteContent.js
+
+  styles/
+    global.css
+
+  App.jsx
+  main.jsx
