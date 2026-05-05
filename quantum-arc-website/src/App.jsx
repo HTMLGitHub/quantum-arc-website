@@ -1,32 +1,67 @@
+/*
+  Quantum Arc Website
+  Main App Component
+
+  This file assembles the homepage.
+
+  Structure:
+  1. Import reusable data first.
+  2. Import components.
+  3. Render components in page order.
+
+  This keeps App.jsx simple and makes each section easier to edit later.
+*/
+
+/*
+  Site content imports.
+
+  These are defined before the components are rendered.
+*/
+
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 
+import {
+  aboutContent,
+  blogPosts,
+  contactContent,
+  heroContent,
+  navigationLinks,
+} from './data/siteContent.js'
+
+/*
+  Component imports.
+
+  Each component controls one major part of the homepage.
+*/
+import AboutSection from './components/AboutSection'
+import BlogPreviewSection from './components/BlogPreviewSection'
+import ContactSection from './components/ContactSection'
+import HeroSection from './components/HeroSection'
+import Footer from './components/Footer'
+import Header from './components/Header'
+
+/*
+  App Component
+
+  This is the root React component for the site.
+*/
 function App() {
   return (
-    <main className="page-shell">
-      <section className="page-section">
-        <p className="section-kicker">Quantum Arc</p>
+    <>
+      <Header links={navigationLinks} />
 
-        <h1>Building useful software for modern businesses.</h1>
+      <main className="page-shell">
+        <HeroSection content={heroContent} />
+        <AboutSection content={aboutContent} />
+        <BlogPreviewSection posts={blogPosts} />
+        <ContactSection content={contactContent} />
+      </main>
 
-        <p className="section-description">
-          Quantum Arc is a technology company focused on practical software,
-          AI tools, automation, and digital systems that help people work smarter.
-        </p>
-
-        <div className="button-row">
-          <a className="button button-primary" href="#contact">
-            Contact Us
-          </a>
-
-          <a className="button button-secondary" href="#learn-more">
-            Learn More
-          </a>
-        </div>
-      </section>
-    </main>
+      <Footer />
+    </>
   )
 }
 
