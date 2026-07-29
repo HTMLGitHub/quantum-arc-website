@@ -292,6 +292,7 @@ label {
 }
 
 input,
+select,
 textarea {
   width: 100%;
   border: 1px solid var(--color-border);
@@ -306,14 +307,31 @@ textarea {
 }
 
 input:focus,
+select:focus,
 textarea:focus {
   border-color: var(--color-accent-light);
   box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.18);
 }
 
+select {
+  /* Native dropdown arrow renders fine on its own in every current
+     browser here — no custom icon needed. */
+  cursor: pointer;
+}
+
 textarea {
   min-height: 140px;
   resize: vertical;
+}
+
+/*
+  Small muted helper text under a form field, e.g. explaining what an
+  optional field is for.
+*/
+.field-hint {
+  margin-top: var(--space-xs);
+  color: var(--color-text-soft);
+  font-size: 0.85rem;
 }
 
 /* ================================
@@ -526,7 +544,19 @@ textarea {
   Individual service card.
 */
 .service-card {
+  display: flex;
+  flex-direction: column;
   min-height: 240px;
+}
+
+/*
+  "Get Started" link at the bottom of each card. margin-top: auto on a
+  flex column pins it to the bottom even when cards in the same row
+  have different amounts of content above it.
+*/
+.service-cta {
+  align-self: flex-start;
+  margin-top: auto;
 }
 
 /*
@@ -543,6 +573,262 @@ textarea {
   background: rgba(124, 58, 237, 0.18);
   color: var(--color-accent-light);
   font-size: 1.25rem;
+}
+
+/*
+  Service price, shown right under the plan name.
+*/
+.service-price {
+  margin-bottom: var(--space-sm);
+  color: var(--color-accent-light);
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+/*
+  Monthly/Annual switch for plans priced both ways (e.g. Website
+  Care). Sits above the price it controls.
+*/
+.billing-toggle-wrap {
+  margin-bottom: var(--space-sm);
+}
+
+.billing-toggle {
+  display: inline-flex;
+  padding: 0.2rem;
+  margin-bottom: var(--space-sm);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.6);
+}
+
+.billing-option {
+  border: none;
+  border-radius: 999px;
+  background: none;
+  padding: 0.35rem 0.9rem;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.billing-option.active {
+  background: var(--color-accent);
+  color: white;
+}
+
+/*
+  Savings callout shown under the price when Annual is selected.
+*/
+.billing-note {
+  color: var(--color-accent-light);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/*
+  Feature list for each service card.
+*/
+.service-feature-list {
+  display: grid;
+  gap: 0.4rem;
+  margin: var(--space-md) 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+/*
+  ">" restricts this to the feature list's own rows — without it, the
+  selector also matches <li> elements inside a feature's tooltip
+  (.info-tooltip-list), giving those a checkmark and left padding too.
+*/
+.service-feature-list > li {
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+.service-feature-list > li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent-light);
+}
+
+/*
+  Hover/focus tooltip used for feature-level info icons and the
+  Website Care "what counts as a minor update" note. Shows on mouse
+  hover and on keyboard focus (:focus-within also covers a tap on
+  touch devices, since tapping focuses the trigger). The panel is
+  positioned absolutely so it floats over the page instead of pushing
+  the trigger or surrounding content around.
+*/
+.info-tooltip-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.info-tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.5rem);
+  z-index: 20;
+  width: max-content;
+  min-width: 200px;
+  max-width: min(260px, 70vw);
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-card);
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  text-align: left;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-fast);
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.info-tooltip-wrap:hover .info-tooltip,
+.info-tooltip-wrap:focus-within .info-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.info-tooltip-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.info-tooltip-list li {
+  padding: 0.15rem 0;
+}
+
+.info-tooltip-heading {
+  margin: 0.5rem 0 0.15rem;
+  color: var(--color-text);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.info-tooltip-heading:first-child {
+  margin-top: 0;
+}
+
+/*
+  Small circular "i" trigger shown next to a feature.
+*/
+.info-icon {
+  display: inline-flex;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-left: 0.35rem;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  border: none;
+  border-radius: 50%;
+  background: rgba(124, 58, 237, 0.18);
+  color: var(--color-accent-light);
+  font-size: 0.7rem;
+  font-style: italic;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+}
+
+/*
+  Card-level notes trigger (e.g. "What counts as a minor update?"),
+  styled like a small link.
+*/
+.service-notes {
+  margin-top: var(--space-md);
+  font-size: 0.9rem;
+}
+
+.service-notes-trigger {
+  border: none;
+  background: none;
+  padding: 0;
+  color: var(--color-accent-light);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/*
+  Always-visible short note under a card's features, e.g. Business
+  Automation's "tell us your repetitive task" prompt.
+*/
+.service-callout {
+  margin-top: var(--space-md);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-soft);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/* ================================
+   Portfolio Section
+   ================================ */
+
+/*
+  Small tag label (e.g. "Client Project") shown above the project name.
+*/
+.portfolio-label {
+  margin-bottom: var(--space-sm);
+  color: var(--color-accent-light);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/*
+  Portfolio card sizing, matches blog cards for a consistent grid.
+  Unlike other cards, padding lives on .portfolio-card-body instead of
+  the card itself, so a cover image (when there is one) can sit flush
+  against the card's edges instead of being inset by the padding.
+*/
+.portfolio-card {
+  overflow: hidden;
+  min-height: 220px;
+}
+
+/*
+  Cover image — only rendered when a project has one uploaded.
+*/
+.portfolio-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.portfolio-card-body {
+  padding: var(--space-xl);
+}
+
+/*
+  Outbound link to the live site — only rendered once a project
+  actually has a URL.
+*/
+.portfolio-link {
+  display: inline-block;
+  margin-top: var(--space-sm);
+  color: var(--color-accent-light);
+  font-weight: 700;
 }
 
 /* ================================
@@ -617,24 +903,26 @@ textarea {
 }
 
 /* ================================
+    17. Blog Post Page
+   ================================
+*/
+.blog-post-back-link
+{
+  margin-bottom: var(--space-xl);
+}
+
+/* ================================
    14. Contact Section
    ================================ */
 
 /*
-  Contact section layout.
-*/
-.contact-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.75fr);
-  gap: var(--space-xl);
-  align-items: start;
-}
-
-/*
-  Visual styling for the contact form.
+  Visual styling for the contact form. Capped width now that it's the
+  only thing in this section — full page-shell width looked stretched
+  once the Contact Info card next to it was removed.
 */
 .contact-form {
   display: grid;
+  max-width: 640px;
   gap: var(--space-lg);
   padding: var(--space-xl);
   border: 1px solid var(--color-border);
@@ -645,21 +933,63 @@ textarea {
 }
 
 /*
-  Contact email link.
+  Honeypot field for the contact form — visually hidden (not
+  display:none, which some bots specifically check for) rather than
+  removed from the tab order via HTML alone.
 */
-.contact-email {
-  display: inline-flex;
-  margin: var(--space-sm) 0 var(--space-lg);
-  color: var(--color-accent-light);
-  font-weight: 800;
+.honeypot-field {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
 
 /*
-  Small helper note in the contact card.
+  "I don't currently have a website" checkbox row. The explicit
+  width/cursor on the checkbox itself overrides the global
+  `input { width: 100% }` rule, which would otherwise stretch it.
 */
-.contact-note {
-  color: var(--color-text-soft);
-  font-size: 0.95rem;
+.checkbox-field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text);
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.checkbox-field input[type="checkbox"] {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--color-accent);
+  cursor: pointer;
+}
+
+/* ================================
+   Admin
+   ================================ */
+
+/*
+  Keeps the login form from stretching full-width on large screens.
+*/
+.admin-login-form {
+  max-width: 420px;
+}
+
+/*
+  Shared error text style for the login and post-editor forms.
+*/
+.form-error {
+  color: var(--color-danger);
+}
+
+/*
+  Shared success text style for the post-editor form.
+*/
+.form-success {
+  color: var(--color-success);
 }
 
 /* ================================
@@ -706,8 +1036,7 @@ textarea {
 */
 @media (max-width: 900px) {
   .hero-layout,
-  .about-layout,
-  .contact-layout {
+  .about-layout {
     grid-template-columns: 1fr;
   }
 

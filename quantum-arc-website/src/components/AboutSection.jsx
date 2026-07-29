@@ -36,7 +36,7 @@ function AboutSection({content}) {
                 </div>
 
                 <div className="card card-padded about-card">
-                    <h3>Core Focus</h3>
+                    <h3>What I Build</h3>
 
                     <ul className="about-highlight-list">
                         {content.highlights.map((highlight) => (

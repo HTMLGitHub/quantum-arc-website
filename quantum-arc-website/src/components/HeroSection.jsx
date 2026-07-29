@@ -27,9 +27,11 @@ function HeroActions({primaryAction, secondaryAction}) {
             <a className="button button-primary" href={primaryAction.href}>
                 {primaryAction.label}
             </a>
-            <a className="button button-secondary" href={secondaryAction.href}>
-                {secondaryAction.label}
-            </a>
+            {secondaryAction && (
+                <a className="button button-secondary" href={secondaryAction.href}>
+                    {secondaryAction.label}
+                </a>
+            )}
         </div>
     )
 }
@@ -72,7 +74,7 @@ function HeroSection({content}) {
 
                     <h1>{content.title}</h1>
 
-                    <p className="section=description hero-description">
+                    <p className="section-description hero-description">
                         {content.description}
                     </p>
 

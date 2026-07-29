@@ -1,13 +1,16 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
+/*
+  Blog posts are now read from and written to Supabase directly from the
+  browser (see src/data/blogPosts.js), so the dev-only /api/posts
+  middleware that used to write flat JSON files is no longer needed.
+*/
 export default defineConfig({
   plugins: [react()],
-  server:
-  {
+  server: {
     port: 3000,
     strictPort: true,
-    open: true
-  }
+    open: true,
+  },
 })

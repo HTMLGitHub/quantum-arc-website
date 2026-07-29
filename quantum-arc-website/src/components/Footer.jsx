@@ -31,7 +31,7 @@ function Footer()
 
     return(
         <footer className="site-footer">
-            <div className="page-shell footer-content">
+            <div className="page-shell footer-layout">
                 <div>
                     <strong>Quantum Arc</strong>
 

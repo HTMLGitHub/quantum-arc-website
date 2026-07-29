@@ -1,0 +1,22 @@
+# Quantum Arc
+
+> Quantum Arc builds websites and automation for small businesses — fast, credible, and priced simply, with no agency overhead.
+
+Quantum Arc is an independent software studio based in Michigan, run directly by the person who builds the work — no salespeople, account managers, or outsourced developers in between. Services: website design and development, ongoing website maintenance, and small business automation (lead handling, notifications, spreadsheet/report automation, tool integrations).
+
+## Pages
+
+- [Home](https://quantumarc.net/): Overview, services, pricing, portfolio, and contact.
+- [Blog](https://quantumarc.net/blog): Articles on websites, small business marketing, and automation.
+
+## Pricing
+
+- Starter Website — from $650 (up to 5 pages, mobile-friendly, contact form, basic SEO)
+- Business Website — from $950 (up to 10 pages, blog/content section, lead forms, analytics)
+- Website Care — $49/month (uptime monitoring, backups, security monitoring, minor content updates)
+- Business Automation — from $250 (lead/email automation, spreadsheet/report automation, integrations)
+
+## Contact
+
+- Contact form: https://quantumarc.net/#contact
+- Email: support@quantumarc.net

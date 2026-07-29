@@ -1,68 +1,42 @@
-/*
-  Quantum Arc Website
-  Main App Component
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import Admin from './pages/Admin';
+import AdminLogin from './pages/AdminLogin';
+import AdminProjects from './pages/AdminProjects';
+import BlogIndex from './pages/BlogIndex';
+import BlogPost from './pages/BlogPost';
+import HomePage from "./pages/HomePage";
+import NotFound from './pages/NotFound';
+import RequireAdminAuth from './components/RequireAdminAuth';
+import ScrollToHash from './ScrollToHash';
 
-  This file assembles the homepage.
-
-  Structure:
-  1. Import reusable data first.
-  2. Import components.
-  3. Render components in page order.
-
-  This keeps App.jsx simple and makes each section easier to edit later.
-*/
-
-/*
-  Site content imports.
-
-  These are defined before the components are rendered.
-*/
-
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-
-import {
-  aboutContent,
-  blogPosts,
-  contactContent,
-  heroContent,
-  navigationLinks,
-} from './data/siteContent.js'
-
-/*
-  Component imports.
-
-  Each component controls one major part of the homepage.
-*/
-import AboutSection from './components/AboutSection'
-import BlogPreviewSection from './components/BlogPreviewSection'
-import ContactSection from './components/ContactSection'
-import HeroSection from './components/HeroSection'
-import Footer from './components/Footer'
-import Header from './components/Header'
-
-/*
-  App Component
-
-  This is the root React component for the site.
-*/
-function App() {
-  return (
-    <>
-      <Header links={navigationLinks} />
-
-      <main className="page-shell">
-        <HeroSection content={heroContent} />
-        <AboutSection content={aboutContent} />
-        <BlogPreviewSection posts={blogPosts} />
-        <ContactSection content={contactContent} />
-      </main>
-
-      <Footer />
-    </>
-  )
+export default function App()
+{
+  return(
+    <BrowserRouter>
+      <ScrollToHash/>
+      <Routes>
+        <Route path="/" element={<HomePage/>} />
+        <Route path="/admin/login" element={<AdminLogin/>} />
+        <Route
+          path="/admin"
+          element={
+            <RequireAdminAuth>
+              <Admin/>
+            </RequireAdminAuth>
+          }
+        />
+        <Route
+          path="/admin/projects"
+          element={
+            <RequireAdminAuth>
+              <AdminProjects/>
+            </RequireAdminAuth>
+          }
+        />
+        <Route path='/blog' element={<BlogIndex/>}/>
+        <Route path="/blog/:slug" element={<BlogPost/>} />
+        <Route path="*" element={<NotFound/>} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
-
-export default App

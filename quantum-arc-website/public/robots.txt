@@ -1,0 +1,50 @@
+# Quantum Arc Website — robots.txt
+#
+# Everything here is intentionally wide open. The goal is maximum
+# visibility (this is a marketing site trying to get found), not
+# protecting content — so both search crawlers and AI crawlers are
+# allowed, including the ones some sites block for AI-training
+# reasons. If that ever changes, tighten this file.
+
+User-agent: *
+Allow: /
+
+# --- AI search / assistant crawlers (retrieval, used to answer live queries) ---
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# --- AI training crawlers ---
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://quantumarc.net/sitemap.xml

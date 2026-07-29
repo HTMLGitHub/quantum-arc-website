@@ -10,6 +10,8 @@
   The navigation links are passed in as props from App.jsx.
 */
 
+import { Link } from "react-router-dom"
+
 /*
   BrandLogo Component
 
@@ -34,11 +36,21 @@ function BrandLogo() {
   It is defined before Header because Header maps through the navigation data
   and calls this component for each link.
 */
-function NavigationLink({ label, href }) {
+function NavigationLink({ label, href })
+ {
+    if(href.startsWith('#'))
+    {
+        return (
+            <a className="nav-link" href={href}>
+                {label}
+            </a>
+        )
+    }
+
     return (
-        <a className="nav-link" href={href}>
+        <Link className="nav-link" to={href}>
             {label}
-        </a>
+        </Link>
     )
 }
 
@@ -62,7 +74,7 @@ function Header({ links }) {
                 </nav>
 
                 <a className="button button-primary" href="#contact">
-                    Get Started
+                    Free Website Review
                 </a>
             </div>
         </header>

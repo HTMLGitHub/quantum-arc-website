@@ -4,7 +4,56 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>quantum-arc-website</title>
+    <meta name="theme-color" content="#0f172a" />
+
+    <!--
+      Core SEO. This is a client-rendered single-page app (no
+      server-side rendering), so these tags are the same on every
+      route — great for the homepage, but a shared link to /blog/some-post
+      will show this same title/description/image rather than
+      post-specific ones. Fine for now; would need SSR or a prerender
+      step to fix properly.
+    -->
+    <title>Quantum Arc — Websites & Automation for Small Businesses</title>
+    <meta name="description" content="Quantum Arc builds fast, credible websites and simple automation for small businesses. Starter sites from $650, ongoing care from $49/month. Based in Michigan." />
+    <link rel="canonical" href="https://quantumarc.net/" />
+
+    <!-- Open Graph — used by iMessage, Facebook, Slack, LinkedIn, etc. for link previews -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Quantum Arc" />
+    <meta property="og:title" content="Quantum Arc — Websites & Automation for Small Businesses" />
+    <meta property="og:description" content="Fast, credible websites and simple automation for small businesses. Starter sites from $650, ongoing care from $49/month." />
+    <meta property="og:url" content="https://quantumarc.net/" />
+    <meta property="og:image" content="https://quantumarc.net/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter/X card — falls back to Open Graph tags above if omitted, but explicit is safer -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Quantum Arc — Websites & Automation for Small Businesses" />
+    <meta name="twitter:description" content="Fast, credible websites and simple automation for small businesses. Starter sites from $650, ongoing care from $49/month." />
+    <meta name="twitter:image" content="https://quantumarc.net/og-image.png" />
+
+    <!--
+      Structured data for search engines and AI answer engines
+      (ChatGPT, Perplexity, Google AI Overviews, etc.) — gives them
+      unambiguous facts about who Quantum Arc is, rather than making
+      them infer it from prose.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Quantum Arc",
+        "description": "Quantum Arc builds websites and automation for small businesses — fast, credible, and priced simply.",
+        "url": "https://quantumarc.net",
+        "image": "https://quantumarc.net/og-image.png",
+        "email": "support@quantumarc.net",
+        "areaServed": "Michigan, United States",
+        "priceRange": "$$"
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
