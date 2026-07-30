@@ -90,9 +90,18 @@ function HomePage() {
     return () => { cancelled = true }
   }, [])
 
+  // PortfolioSection/BlogPreviewSection already hide themselves when
+  // there's nothing to show — mirror that here so the nav never links
+  // to a section that isn't on the page.
+  const visibleNavLinks = navigationLinks.filter((link) => {
+    if (link.href === '#portfolio') return portfolioProjects.length > 0
+    if (link.href === '#blog') return latestPosts.length > 0
+    return true
+  })
+
   return (
     <>
-      <Header links={navigationLinks} />
+      <Header links={visibleNavLinks} />
 
       <main className="page-shell">
         <HeroSection content={heroContent} />
