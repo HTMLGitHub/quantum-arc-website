@@ -31,7 +31,7 @@ export const navigationLinks = [
   { label: 'Services', href: '#services' },
   { label: 'Portfolio', href: '#portfolio' },
   { label: 'About Us', href: '#about' },
-  { label: 'Blog', href: '/blog' },
+  { label: 'Blog', href: '#blog' },
   { label: 'Contact', href: '#contact' },
 ]
 
