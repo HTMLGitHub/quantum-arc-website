@@ -8,6 +8,8 @@
   more than just not having the section yet.
 */
 
+import { Link } from 'react-router-dom'
+
 /*
   PortfolioCard Component
 
@@ -17,8 +19,23 @@
   A project can have neither image nor URL yet (just described in
   text), an image only (site not live, but there's a mockup/screenshot
   to show), a URL only, or both — every piece here is optional.
+
+  websiteUrl can point two different places:
+  - An absolute URL (e.g. "https://magazine.showcase.quantumarc.net")
+    for a project hosted as its own separate site — opens in a new
+    tab, same as before.
+  - A relative, in-app path (e.g. "/portfolio/brightpath") for a
+    project built as pages inside this app — navigates with
+    react-router's <Link> instead, so it doesn't reload the page or
+    leave the current domain/environment.
 */
-function PortfolioCard({ label, name, description, websiteUrl, imageUrl }) {
+function isInternalPath(url) {
+    return typeof url === 'string' && url.startsWith('/')
+}
+
+function PortfolioCard({ label, name, description, websiteUrl, imageUrl, category, technologies, status }) {
+    const isConcept = status === 'concept'
+
     return (
         <div className="card portfolio-card">
             {imageUrl && (
@@ -26,14 +43,29 @@ function PortfolioCard({ label, name, description, websiteUrl, imageUrl }) {
             )}
 
             <div className="card-padded portfolio-card-body">
+                {isConcept && (
+                    <p className="portfolio-concept-badge">Concept / Showcase Project</p>
+                )}
+
                 {label && <p className="portfolio-label">{label}</p>}
                 <h3>{name}</h3>
+                {category && <p className="portfolio-category">{category}</p>}
                 <p>{description}</p>
 
+                {technologies?.length > 0 && (
+                    <p className="portfolio-tech">{technologies.join(' · ')}</p>
+                )}
+
                 {websiteUrl && (
-                    <a className="portfolio-link" href={websiteUrl} target="_blank" rel="noopener noreferrer">
-                        Visit site →
-                    </a>
+                    isInternalPath(websiteUrl) ? (
+                        <Link className="portfolio-link" to={websiteUrl}>
+                            View Project →
+                        </Link>
+                    ) : (
+                        <a className="portfolio-link" href={websiteUrl} target="_blank" rel="noopener noreferrer">
+                            Visit site →
+                        </a>
+                    )
                 )}
             </div>
         </div>

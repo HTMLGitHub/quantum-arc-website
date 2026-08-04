@@ -69,15 +69,19 @@ what Vercel deploys from.
 
 ## Dev: dev.quantumarc.net
 
-Since dev is sharing the same Supabase project and Web3Forms key as
-production (your call — see `SETUP.md` if you want to revisit that later),
-this gives you a second live URL to sanity-check changes on before they're
-public, not full data isolation. Worth knowing going in: test blog posts,
-test portfolio projects, and test contact form submissions on
-dev.quantumarc.net all land in the exact same Supabase tables as
-production — a test post could show up on the real `/blog` immediately, and
-a test contact submission will send a real email to
-support@quantumarc.net. Nothing breaks, it's just not a sandbox.
+Dev and production now use **two separate Supabase projects**
+("Quantum Arc Dev" and "quantum-arc-website"), not a shared one — this
+changed after the note below was originally written, and this file is
+being corrected to match. Vercel's Environment Variables are what
+actually control this: `VITE_SUPABASE_URL`/`VITE_SUPABASE_ANON_KEY` are
+scoped separately for "Preview → dev branch" versus "Production and
+Preview" (Project Settings > Environment Variables). Because of that,
+dev.quantumarc.net is a real sandbox: test blog posts, portfolio
+projects, and contact submissions on dev land in the dev project's
+tables only, completely separate from production data. Schema changes
+(new columns, new tables) still need to be applied by hand to *both*
+projects, since there's no automatic migration syncing between them —
+run the same SQL in each project's SQL Editor.
 
 1. Create a `dev` branch and push it:
    ```bash

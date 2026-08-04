@@ -1,0 +1,372 @@
+/*
+  Quantum Arc Website
+  BrightPath Youth Collective — Scoped Styles
+
+  BrightPath is a concept portfolio project with its own visual
+  identity, deliberately different from Quantum Arc's own dark/violet
+  theme (see global.css). Everything here is scoped under the
+  .brightpath wrapper class (applied once, at the top of every
+  BrightPath page) so these rules never leak into or override the main
+  site's styles, and global.css never bleeds into BrightPath either.
+
+  Reuses Quantum Arc's structural helpers (.page-shell for width,
+  .button/.card shapes) where it doesn't conflict with the new theme,
+  rather than reinventing layout primitives that already exist.
+*/
+
+.brightpath {
+  --bp-bg: #fffaf5;
+  --bp-bg-soft: #fff1e2;
+  --bp-surface: #ffffff;
+
+  --bp-text: #2b2118;
+  --bp-text-muted: #6b5c4f;
+
+  --bp-accent: #e8734a;
+  --bp-accent-dark: #c85a34;
+  --bp-teal: #2f8f7a;
+  --bp-teal-dark: #236b5b;
+
+  --bp-border: rgba(43, 33, 24, 0.12);
+  --bp-radius: 1rem;
+  --bp-radius-sm: 0.6rem;
+
+  background: var(--bp-bg);
+  color: var(--bp-text);
+  font-family: var(--font-main);
+  min-height: 100vh;
+}
+
+.brightpath a {
+  color: inherit;
+}
+
+.bp-container {
+  max-width: var(--max-width-page, 1200px);
+  margin: 0 auto;
+  padding: 0 var(--space-lg, 1.5rem);
+}
+
+/* ---- Disclaimer bar ---- */
+
+.bp-disclaimer {
+  background: var(--bp-accent-dark);
+  color: #fff;
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 0.5rem 1rem;
+}
+
+.bp-disclaimer a {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+/* ---- Header ---- */
+
+.bp-header {
+  background: var(--bp-surface);
+  border-bottom: 1px solid var(--bp-border);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.bp-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 72px;
+  flex-wrap: wrap;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.bp-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.bp-brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--bp-accent);
+  color: #fff;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+
+.bp-brand-name {
+  font-weight: 700;
+}
+
+.bp-nav {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.bp-nav-link {
+  text-decoration: none;
+  color: var(--bp-text-muted);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 2px solid transparent;
+}
+
+.bp-nav-link:hover,
+.bp-nav-link.is-active {
+  color: var(--bp-accent-dark);
+  border-bottom-color: var(--bp-accent);
+}
+
+/* ---- Shared section rhythm ---- */
+
+.bp-section {
+  padding: var(--space-3xl, 4rem) 0;
+}
+
+.bp-section-soft {
+  background: var(--bp-bg-soft);
+}
+
+.bp-kicker {
+  display: inline-block;
+  color: var(--bp-accent-dark);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.8rem;
+  margin-bottom: 0.75rem;
+}
+
+.bp-title {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.bp-body {
+  color: var(--bp-text-muted);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  max-width: 62ch;
+}
+
+/* ---- Buttons ---- */
+
+.bp-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 1.3rem;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.95rem;
+  border: 2px solid transparent;
+}
+
+.bp-button-primary {
+  background: var(--bp-accent);
+  color: #fff;
+}
+
+.bp-button-primary:hover {
+  background: var(--bp-accent-dark);
+}
+
+.bp-button-secondary {
+  background: transparent;
+  border-color: var(--bp-accent);
+  color: var(--bp-accent-dark);
+}
+
+.bp-button-secondary:hover {
+  background: var(--bp-accent);
+  color: #fff;
+}
+
+/* ---- Hero ---- */
+
+.bp-hero {
+  padding: var(--space-3xl, 4rem) 0 var(--space-2xl, 3rem);
+  text-align: center;
+}
+
+.bp-hero .bp-body {
+  margin: 0 auto var(--space-xl, 2rem);
+}
+
+/* ---- Stats ---- */
+
+.bp-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.bp-stat-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--bp-accent-dark);
+}
+
+.bp-stat-label {
+  color: var(--bp-text-muted);
+  font-size: 0.9rem;
+}
+
+/* ---- Card grid (programs, ways to help, values) ---- */
+
+.bp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.bp-card {
+  background: var(--bp-surface);
+  border: 1px solid var(--bp-border);
+  border-radius: var(--bp-radius);
+  padding: 1.75rem;
+}
+
+.bp-card-eyebrow {
+  display: inline-block;
+  background: var(--bp-bg-soft);
+  color: var(--bp-accent-dark);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+}
+
+.bp-card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.bp-card p {
+  color: var(--bp-text-muted);
+  line-height: 1.55;
+}
+
+/* ---- Contact form ---- */
+
+.bp-form {
+  display: grid;
+  gap: 1rem;
+  max-width: 480px;
+}
+
+.bp-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.bp-form input,
+.bp-form select,
+.bp-form textarea {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--bp-border);
+  border-radius: var(--bp-radius-sm);
+  font-family: inherit;
+  font-size: 0.95rem;
+  background: var(--bp-surface);
+  color: var(--bp-text);
+}
+
+.bp-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.bp-form-status {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.bp-form-status.is-success {
+  color: var(--bp-teal-dark);
+}
+
+.bp-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.bp-contact-details p {
+  margin-bottom: 0.5rem;
+  color: var(--bp-text-muted);
+}
+
+/* ---- Footer ---- */
+
+.bp-footer {
+  border-top: 1px solid var(--bp-border);
+  background: var(--bp-surface);
+  padding: var(--space-2xl, 3rem) 0;
+}
+
+.bp-footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.bp-footer-note {
+  color: var(--bp-text-muted);
+  font-size: 0.9rem;
+  max-width: 40ch;
+  margin-top: 0.4rem;
+}
+
+.bp-footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.bp-footer-back {
+  font-weight: 700;
+  color: var(--bp-accent-dark);
+  text-decoration: none;
+  align-self: center;
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 720px) {
+  .bp-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bp-contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bp-header-inner {
+    justify-content: center;
+    text-align: center;
+  }
+}

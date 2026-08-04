@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="BrightPath Youth Collective">
+  <defs>
+    <linearGradient id="bp-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e8734a"/>
+      <stop offset="55%" stop-color="#c85a34"/>
+      <stop offset="100%" stop-color="#2f8f7a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bp-grad)"/>
+  <circle cx="120" cy="410" r="140" fill="rgba(255,255,255,0.08)"/>
+  <circle cx="700" cy="80" r="110" fill="rgba(255,255,255,0.08)"/>
+  <circle cx="400" cy="250" r="56" fill="#ffffff"/>
+  <text x="400" y="262" text-anchor="middle" font-family="system-ui, sans-serif" font-size="34" font-weight="700" fill="#c85a34">BP</text>
+  <text x="400" y="345" text-anchor="middle" font-family="system-ui, sans-serif" font-size="30" font-weight="700" fill="#ffffff">BrightPath Youth Collective</text>
+  <text x="400" y="378" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" fill="rgba(255,255,255,0.85)">Concept / Showcase Project</text>
+</svg>
