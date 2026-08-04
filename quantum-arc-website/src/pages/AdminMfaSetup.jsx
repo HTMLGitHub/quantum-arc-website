@@ -53,7 +53,14 @@ export default function AdminMfaSetup() {
         setStatus('working')
         setError('')
 
-        const { data, error: enrollError } = await supabase.auth.mfa.enroll({ factorType: 'totp' })
+        // Explicit issuer so authenticator apps show "Quantum Arc"
+        // instead of Supabase's default, which falls back to the
+        // project's configured Site URL (e.g. "localhost:3000" until
+        // that's set correctly in the dashboard).
+        const { data, error: enrollError } = await supabase.auth.mfa.enroll({
+            factorType: 'totp',
+            issuer: 'Quantum Arc',
+        })
 
         setStatus(null)
 
