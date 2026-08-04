@@ -8,8 +8,9 @@
 */
 
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { supabase } from '../lib/supabaseClient'
+import { resolvePostAuthRoute } from '../lib/adminAuth'
 
 export default function AdminLogin() {
     const [email, setEmail] = useState('')
@@ -25,14 +26,16 @@ export default function AdminLogin() {
 
         const { error: signInError } = await supabase.auth.signInWithPassword({ email, password })
 
-        setSubmitting(false)
-
         if (signInError) {
+            setSubmitting(false)
             setError('Incorrect email or password.')
             return
         }
 
-        navigate('/admin')
+        // Password alone only proves aal1 -- send anyone with a
+        // verified MFA factor on to the code challenge instead of
+        // straight into /admin.
+        navigate(await resolvePostAuthRoute())
     }
 
     return (
@@ -74,6 +77,10 @@ export default function AdminLogin() {
 
                 {error && <p className="form-error">{error}</p>}
             </form>
+
+            <p className="blog-post-back-link">
+                <Link to="/admin/forgot-password">Forgot password?</Link>
+            </p>
         </main>
     )
 }

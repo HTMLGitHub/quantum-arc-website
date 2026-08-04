@@ -1,6 +1,10 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Admin from './pages/Admin';
 import AdminLogin from './pages/AdminLogin';
+import AdminForgotPassword from './pages/AdminForgotPassword';
+import AdminUpdatePassword from './pages/AdminUpdatePassword';
+import AdminMfaChallenge from './pages/AdminMfaChallenge';
+import AdminMfaSetup from './pages/AdminMfaSetup';
 import AdminProjects from './pages/AdminProjects';
 import BlogIndex from './pages/BlogIndex';
 import BlogPost from './pages/BlogPost';
@@ -22,6 +26,15 @@ export default function App()
       <Routes>
         <Route path="/" element={<HomePage/>} />
         <Route path="/admin/login" element={<AdminLogin/>} />
+        <Route path="/admin/forgot-password" element={<AdminForgotPassword/>} />
+        <Route path="/admin/update-password" element={<AdminUpdatePassword/>} />
+        {/*
+          Not wrapped in RequireAdminAuth: reaching this page only
+          needs the password-only (aal1) session from AdminLogin, and
+          requiring aal2 to get to the page that grants aal2 would be
+          circular. It guards itself (see AdminMfaChallenge.jsx).
+        */}
+        <Route path="/admin/mfa-challenge" element={<AdminMfaChallenge/>} />
         <Route
           path="/admin"
           element={
@@ -35,6 +48,14 @@ export default function App()
           element={
             <RequireAdminAuth>
               <AdminProjects/>
+            </RequireAdminAuth>
+          }
+        />
+        <Route
+          path="/admin/security"
+          element={
+            <RequireAdminAuth>
+              <AdminMfaSetup/>
             </RequireAdminAuth>
           }
         />

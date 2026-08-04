@@ -1028,9 +1028,31 @@ textarea {
 
 /*
   Keeps the login form from stretching full-width on large screens.
+  Reused by every admin auth page (forgot/update password, MFA
+  setup/challenge), not just the login form itself.
 */
 .admin-login-form {
   max-width: 420px;
+}
+
+/*
+  QR code shown during MFA enrollment. Fixed size regardless of the
+  SVG's intrinsic dimensions so it doesn't stretch to the form's full
+  width.
+*/
+.mfa-qr {
+  width: 200px;
+  height: 200px;
+}
+
+/*
+  6-digit TOTP code input — wider letter-spacing makes the digits
+  easier to read/count at a glance than the default input styling.
+*/
+.mfa-code-input {
+  letter-spacing: 0.3em;
+  text-align: center;
+  font-size: 1.25rem;
 }
 
 /*
