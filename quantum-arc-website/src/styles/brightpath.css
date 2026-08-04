@@ -53,13 +53,42 @@
   background: var(--bp-accent-dark);
   color: #fff;
   font-size: 0.85rem;
+  padding: 0.6rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
   text-align: center;
-  padding: 0.5rem 1rem;
 }
 
-.bp-disclaimer a {
-  text-decoration: underline;
-  font-weight: 600;
+.bp-disclaimer-text {
+  margin: 0;
+  max-width: 62ch;
+}
+
+/*
+  Deliberately styled as a button, not a text link — this is an exit
+  from the showcase back to the real Quantum Arc site, not a piece of
+  BrightPath's own content, so it shouldn't read like body copy.
+*/
+.bp-disclaimer-back {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.bp-disclaimer-back:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 /* ---- Header ---- */
@@ -347,13 +376,6 @@
   font-size: 0.9rem;
 }
 
-.bp-footer-back {
-  font-weight: 700;
-  color: var(--bp-accent-dark);
-  text-decoration: none;
-  align-self: center;
-}
-
 /* ---- Responsive ---- */
 
 @media (max-width: 720px) {
@@ -368,5 +390,10 @@
   .bp-header-inner {
     justify-content: center;
     text-align: center;
+  }
+
+  .bp-disclaimer {
+    flex-direction: column;
+    gap: 0.5rem;
   }
 }

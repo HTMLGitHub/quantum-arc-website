@@ -3,11 +3,11 @@
   BrightPath — Header
 
   BrightPath is a concept showcase project, not a real Quantum Arc
-  client — see the disclaimer bar below and the "Concept" badge on the
-  portfolio card (PortfolioSection.jsx). This header is intentionally
-  visually distinct from Quantum Arc's own site.styles/brightpath.css
-  scopes all of this under the .brightpath class so it never leaks
-  into or clashes with the main site's global.css.
+  client. The bar above the site header is a persistent UI control
+  (not page content) that says so and always offers a way back to the
+  real Quantum Arc site — kept visually separate from BrightPath's own
+  branding so it reads as "you're inside a showcase" chrome, not as
+  something BrightPath itself wrote about its own site.
 
   All navigation uses react-router's <Link> with relative paths, so it
   stays on whichever domain it's loaded from (quantumarc.net or
@@ -21,10 +21,14 @@ export default function BrightPathHeader() {
   return (
     <>
       <div className="bp-disclaimer">
-        Concept / Showcase Project — built by{' '}
-        <Link to="/">Quantum Arc</Link> to demonstrate design and
-        development work. BrightPath Youth Collective is not a real
-        organization.
+        <p className="bp-disclaimer-text">
+          Concept / Showcase Project — built by Quantum Arc to demonstrate
+          design and development work. BrightPath Youth Collective is not a
+          real organization.
+        </p>
+        <Link to="/#portfolio" className="bp-disclaimer-back">
+          ← Back to Quantum Arc
+        </Link>
       </div>
 
       <header className="bp-header">

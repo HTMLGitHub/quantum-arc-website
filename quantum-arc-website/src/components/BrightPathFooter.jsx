@@ -2,10 +2,10 @@
   Quantum Arc Website
   BrightPath — Footer
 
-  Repeats the concept-project disclaimer at the bottom of every
-  BrightPath page (in addition to the top bar in BrightPathHeader and
-  the badge on the portfolio card) — this project should never be
-  mistaken for a real Quantum Arc client at any point in the page.
+  The "back to Quantum Arc" exit link lives in the top disclaimer bar
+  (see BrightPathHeader) as a persistent UI control, not here — this
+  footer sticks to BrightPath's own content/navigation so it reads as
+  part of the showcase site itself.
 */
 
 import { Link } from 'react-router-dom'
@@ -29,10 +29,6 @@ export default function BrightPathFooter() {
             <Link key={link.href} to={link.href}>{link.label}</Link>
           ))}
         </nav>
-
-        <Link to="/#portfolio" className="bp-footer-back">
-          ← Back to Quantum Arc portfolio
-        </Link>
       </div>
     </footer>
   )
