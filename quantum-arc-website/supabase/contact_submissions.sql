@@ -48,22 +48,22 @@ create policy "Anyone can submit the contact form"
   for insert
   with check (true);
 
--- Change 'admin@quantumarc.com' to match whichever email you used in
+-- Change 'admin@quantumarc.net' to match whichever email you used in
 -- blog_posts.sql.
 drop policy if exists "Admin can read submissions" on contact_submissions;
 create policy "Admin can read submissions"
   on contact_submissions
   for select
-  using ((auth.jwt() ->> 'email') = 'admin@quantumarc.com');
+  using ((auth.jwt() ->> 'email') = 'admin@quantumarc.net');
 
 drop policy if exists "Admin can update submissions" on contact_submissions;
 create policy "Admin can update submissions"
   on contact_submissions
   for update
-  using ((auth.jwt() ->> 'email') = 'admin@quantumarc.com');
+  using ((auth.jwt() ->> 'email') = 'admin@quantumarc.net');
 
 drop policy if exists "Admin can delete submissions" on contact_submissions;
 create policy "Admin can delete submissions"
   on contact_submissions
   for delete
-  using ((auth.jwt() ->> 'email') = 'admin@quantumarc.com');
+  using ((auth.jwt() ->> 'email') = 'admin@quantumarc.net');

@@ -24,7 +24,7 @@ the Quantum Arc project, not another one.
 1. In the Supabase dashboard, open **SQL Editor > New query**.
 2. Paste in the contents of `supabase/blog_posts.sql` (in this repo) and click
    **Run**.
-3. Before running it, change the email in the three `'admin@quantumarc.com'`
+3. Before running it, change the email in the three `'admin@quantumarc.net'`
    lines to whatever email you'll actually sign in with — it must match
    exactly.
 

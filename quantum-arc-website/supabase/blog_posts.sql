@@ -48,23 +48,23 @@ create policy "Public can read blog posts"
   using (true);
 
 -- Only the admin (matched by email) can create posts.
--- Change 'admin@quantumarc.com' to whichever email you use to sign in.
+-- Change 'admin@quantumarc.net' to whichever email you use to sign in.
 drop policy if exists "Admin can insert blog posts" on blog_posts;
 create policy "Admin can insert blog posts"
   on blog_posts
   for insert
-  with check ((auth.jwt() ->> 'email') = 'admin@quantumarc.com');
+  with check ((auth.jwt() ->> 'email') = 'admin@quantumarc.net');
 
 -- Only the admin can edit posts.
 drop policy if exists "Admin can update blog posts" on blog_posts;
 create policy "Admin can update blog posts"
   on blog_posts
   for update
-  using ((auth.jwt() ->> 'email') = 'admin@quantumarc.com');
+  using ((auth.jwt() ->> 'email') = 'admin@quantumarc.net');
 
 -- Only the admin can delete posts.
 drop policy if exists "Admin can delete blog posts" on blog_posts;
 create policy "Admin can delete blog posts"
   on blog_posts
   for delete
-  using ((auth.jwt() ->> 'email') = 'admin@quantumarc.com');
+  using ((auth.jwt() ->> 'email') = 'admin@quantumarc.net');
