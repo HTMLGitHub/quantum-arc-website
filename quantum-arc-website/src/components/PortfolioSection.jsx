@@ -65,27 +65,31 @@ function PortfolioCard({ name, description, websiteUrl, imageUrl, category, tech
                 <h3>{name}</h3>
                 <p>{description}</p>
 
-                {technologies?.length > 0 && (
-                    <p className="portfolio-tech">{technologies.join(' · ')}</p>
-                )}
-
                 {/*
-                  margin-top: auto (see .portfolio-link) keeps this
-                  pinned to the bottom of the card regardless of how
-                  long the description/tech list above it runs, so the
-                  CTA lines up across every card in a row.
+                  Tech line + CTA link are grouped in one footer block
+                  with margin-top: auto (see .portfolio-card-footer), so
+                  the whole group anchors to the bottom of the card as a
+                  unit — the tech line sits at the same distance from the
+                  bottom on every card, not just the link, regardless of
+                  how long each project's description runs.
                 */}
-                {websiteUrl && (
-                    isInternalPath(websiteUrl) ? (
-                        <Link className="portfolio-link" to={websiteUrl}>
-                            View Project →
-                        </Link>
-                    ) : (
-                        <a className="portfolio-link" href={websiteUrl} target="_blank" rel="noopener noreferrer">
-                            Visit site →
-                        </a>
-                    )
-                )}
+                <div className="portfolio-card-footer">
+                    {technologies?.length > 0 && (
+                        <p className="portfolio-tech">{technologies.join(' · ')}</p>
+                    )}
+
+                    {websiteUrl && (
+                        isInternalPath(websiteUrl) ? (
+                            <Link className="portfolio-link" to={websiteUrl}>
+                                View Project →
+                            </Link>
+                        ) : (
+                            <a className="portfolio-link" href={websiteUrl} target="_blank" rel="noopener noreferrer">
+                                Visit site →
+                            </a>
+                        )
+                    )}
+                </div>
             </div>
         </div>
     )
