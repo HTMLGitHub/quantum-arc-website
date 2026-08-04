@@ -816,12 +816,14 @@ textarea {
 
 
 /*
-  Tech stack line, only rendered when a project lists any.
+  Tech stack line, only rendered when a project lists any. No
+  margin-top here anymore — spacing above it now comes from
+  .portfolio-card-footer's gap, since the tech line lives inside that
+  footer block rather than directly under the description.
 */
 .portfolio-tech {
   color: var(--color-text-soft);
   font-size: 0.8rem;
-  margin-top: var(--space-sm);
 }
 
 /*
@@ -831,9 +833,10 @@ textarea {
   against the card's edges instead of being inset by the padding.
 
   display: flex here (plus flex on .portfolio-card-body below) is what
-  lets .portfolio-link anchor to the bottom of the card via
-  margin-top: auto, so the "View Project"/"Visit site" CTA lines up
-  across every card in a row even when descriptions are different
+  lets .portfolio-card-footer anchor to the bottom of the card via
+  margin-top: auto, so the tech line AND the "View Project"/"Visit
+  site" CTA both line up across every card in a row at the same
+  distance from the bottom, even when descriptions are different
   lengths. .grid already stretches grid items to equal row height by
   default, so this only has to distribute space within that height.
 */
@@ -861,15 +864,24 @@ textarea {
 }
 
 /*
+  Groups the tech line and the CTA link as one unit, pinned to the
+  bottom of .portfolio-card-body via margin-top: auto (see the flex
+  layout above) — see PortfolioSection.jsx for why this is a single
+  wrapper instead of putting margin-top: auto directly on the link.
+*/
+.portfolio-card-footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/*
   Outbound link to the live site — only rendered once a project
-  actually has a URL. margin-top: auto pushes it to the bottom of
-  .portfolio-card-body (see the flex layout above) instead of sitting
-  directly under the description.
+  actually has a URL.
 */
 .portfolio-link {
   display: inline-block;
-  margin-top: auto;
-  padding-top: var(--space-sm);
   color: var(--color-accent-light);
   font-weight: 700;
 }
