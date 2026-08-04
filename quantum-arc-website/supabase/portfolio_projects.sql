@@ -35,6 +35,33 @@ create table if not exists portfolio_projects (
 alter table portfolio_projects add column if not exists website_url text;
 alter table portfolio_projects add column if not exists image_url text;
 
+-- Added for the BrightPath Youth Collective showcase project (a
+-- concept/portfolio entry, not a real client) — see DEPLOY.md and
+-- src/data/brightpathContent.js. Kept additive/idempotent like the
+-- two columns above: every new column is nullable or has a safe
+-- default, so this is a no-op on rows that don't use it.
+--
+-- Deliberately NOT added here: slug, long_description, project_images.
+-- BrightPath's actual page routes are static (/portfolio/brightpath/...,
+-- not slug-driven) and its page copy lives in
+-- src/data/brightpathContent.js rather than the database, so those
+-- columns would have no reader yet. Add them later if a project
+-- actually needs slug-based routing or DB-driven long-form content.
+alter table portfolio_projects add column if not exists category text;
+alter table portfolio_projects add column if not exists technologies text[];
+alter table portfolio_projects add column if not exists featured boolean not null default false;
+alter table portfolio_projects add column if not exists sort_order integer;
+
+-- 'client'   — a real Quantum Arc client project
+-- 'concept'  — a fictional showcase/demo project (e.g. BrightPath)
+-- 'internal' — a Quantum Arc-owned tool/project, not client work
+-- 'archived' — no longer actively shown/maintained
+alter table portfolio_projects add column if not exists status text not null default 'client';
+
+alter table portfolio_projects drop constraint if exists portfolio_projects_status_check;
+alter table portfolio_projects add constraint portfolio_projects_status_check
+  check (status in ('client', 'concept', 'internal', 'archived'));
+
 alter table portfolio_projects enable row level security;
 
 -- Table-level grants. Same reasoning as the other tables: with

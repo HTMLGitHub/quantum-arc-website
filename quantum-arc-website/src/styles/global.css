@@ -797,6 +797,44 @@ textarea {
 }
 
 /*
+  Shown when a project's status is "concept" — makes it visually
+  unambiguous that the project isn't a real client, not just something
+  buried in a description. See PortfolioSection.jsx.
+*/
+.portfolio-concept-badge {
+  display: inline-block;
+  margin-bottom: var(--space-sm);
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: var(--color-warning);
+  color: var(--color-bg);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/*
+  Category tag (e.g. "Nonprofit / Youth Organization") — separate from
+  .portfolio-label, which is more of a project "type" (e.g. "Concept
+  Website", "Client Project").
+*/
+.portfolio-category {
+  color: var(--color-text-soft);
+  font-size: 0.85rem;
+  margin-bottom: var(--space-sm);
+}
+
+/*
+  Tech stack line, only rendered when a project lists any.
+*/
+.portfolio-tech {
+  color: var(--color-text-soft);
+  font-size: 0.8rem;
+  margin-top: var(--space-sm);
+}
+
+/*
   Portfolio card sizing, matches blog cards for a consistent grid.
   Unlike other cards, padding lives on .portfolio-card-body instead of
   the card itself, so a cover image (when there is one) can sit flush

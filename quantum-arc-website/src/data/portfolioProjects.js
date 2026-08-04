@@ -14,13 +14,21 @@ import { supabase } from '../lib/supabaseClient'
 
 // Aliased to camelCase (same trick as blogPosts.js) so components can
 // destructure websiteUrl/imageUrl instead of website_url/image_url.
-const PROJECT_COLUMNS = 'id, label, name, description, websiteUrl:website_url, imageUrl:image_url, created_at'
+// category/technologies/featured/sort_order/status were added for the
+// BrightPath showcase project — see supabase/portfolio_projects.sql.
+const PROJECT_COLUMNS =
+  'id, label, name, description, websiteUrl:website_url, imageUrl:image_url, ' +
+  'category, technologies, featured, sortOrder:sort_order, status, created_at'
 const IMAGE_BUCKET = 'portfolio-images'
 
 export async function fetchPortfolioProjects() {
   const { data, error } = await supabase
     .from('portfolio_projects')
     .select(PROJECT_COLUMNS)
+    // Featured projects first, then manual sort_order (nulls last),
+    // then newest first as a tiebreaker for anything unordered.
+    .order('featured', { ascending: false })
+    .order('sort_order', { ascending: true, nullsFirst: false })
     .order('created_at', { ascending: false })
 
   if (error) throw error
