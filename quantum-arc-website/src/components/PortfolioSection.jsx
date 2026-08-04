@@ -28,12 +28,17 @@ import { Link } from 'react-router-dom'
     project built as pages inside this app — navigates with
     react-router's <Link> instead, so it doesn't reload the page or
     leave the current domain/environment.
+
+  Note: the thumbnail image itself no longer carries a "Concept /
+  Showcase Project" caption — that would duplicate the badge rendered
+  here in the card body, right below the image. One designation, one
+  place.
 */
 function isInternalPath(url) {
     return typeof url === 'string' && url.startsWith('/')
 }
 
-function PortfolioCard({ label, name, description, websiteUrl, imageUrl, category, technologies, status }) {
+function PortfolioCard({ name, description, websiteUrl, imageUrl, category, technologies, status }) {
     const isConcept = status === 'concept'
 
     return (
@@ -47,15 +52,29 @@ function PortfolioCard({ label, name, description, websiteUrl, imageUrl, categor
                     <p className="portfolio-concept-badge">Concept / Showcase Project</p>
                 )}
 
-                {label && <p className="portfolio-label">{label}</p>}
+                {/*
+                  Single small tag above the title — category (e.g.
+                  "Nonprofit / Youth Organization", "UX/UI Design").
+                  There's deliberately no second tag below the title
+                  anymore; showing project "type" and "category" as two
+                  separate lines was redundant once every current
+                  project already has the concept badge above.
+                */}
+                {category && <p className="portfolio-label">{category}</p>}
+
                 <h3>{name}</h3>
-                {category && <p className="portfolio-category">{category}</p>}
                 <p>{description}</p>
 
                 {technologies?.length > 0 && (
                     <p className="portfolio-tech">{technologies.join(' · ')}</p>
                 )}
 
+                {/*
+                  margin-top: auto (see .portfolio-link) keeps this
+                  pinned to the bottom of the card regardless of how
+                  long the description/tech list above it runs, so the
+                  CTA lines up across every card in a row.
+                */}
                 {websiteUrl && (
                     isInternalPath(websiteUrl) ? (
                         <Link className="portfolio-link" to={websiteUrl}>

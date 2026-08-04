@@ -814,16 +814,6 @@ textarea {
   text-transform: uppercase;
 }
 
-/*
-  Category tag (e.g. "Nonprofit / Youth Organization") — separate from
-  .portfolio-label, which is more of a project "type" (e.g. "Concept
-  Website", "Client Project").
-*/
-.portfolio-category {
-  color: var(--color-text-soft);
-  font-size: 0.85rem;
-  margin-bottom: var(--space-sm);
-}
 
 /*
   Tech stack line, only rendered when a project lists any.
@@ -839,10 +829,19 @@ textarea {
   Unlike other cards, padding lives on .portfolio-card-body instead of
   the card itself, so a cover image (when there is one) can sit flush
   against the card's edges instead of being inset by the padding.
+
+  display: flex here (plus flex on .portfolio-card-body below) is what
+  lets .portfolio-link anchor to the bottom of the card via
+  margin-top: auto, so the "View Project"/"Visit site" CTA lines up
+  across every card in a row even when descriptions are different
+  lengths. .grid already stretches grid items to equal row height by
+  default, so this only has to distribute space within that height.
 */
 .portfolio-card {
   overflow: hidden;
   min-height: 220px;
+  display: flex;
+  flex-direction: column;
 }
 
 /*
@@ -856,15 +855,21 @@ textarea {
 
 .portfolio-card-body {
   padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 /*
   Outbound link to the live site — only rendered once a project
-  actually has a URL.
+  actually has a URL. margin-top: auto pushes it to the bottom of
+  .portfolio-card-body (see the flex layout above) instead of sitting
+  directly under the description.
 */
 .portfolio-link {
   display: inline-block;
-  margin-top: var(--space-sm);
+  margin-top: auto;
+  padding-top: var(--space-sm);
   color: var(--color-accent-light);
   font-weight: 700;
 }
